@@ -1,0 +1,27 @@
+// Put LED anodes tp digital pins 2-13 (12 LEDpins) with 470 ohm resistor for each cathode to Arduino Ground pin.
+// Put potentiometer with legs from arduino +5V and ground pins. Wiper to analog Pin 0(poPin).
+// Comment lines starting with *//* are not executed
+// Original code taken from youtube channel TinselKoala
+// first initialize some variables
+
+int LEDpin =0, potPin = 0;
+
+// then loop thru to set all LED pins as digital outputs (which give +5V volts as a HIGH and ground as LOW)
+
+void setup() {
+  for (LEDpin = 2; LEDpin < 14; LEDpin++)
+pinMode (LEDpin, OUTPUT);
+}
+
+// Then comes the main programm code loop to light each LED for the time set bz the potentiometer's analog value
+// which is read as a value between 0 and 1023 at the "potpin"
+// These values are "mapped" to delay values between 1000ms and 10ms.
+// The LED stays on for the delay time then turns off.
+
+void loop() {
+for (LEDpin = 2; LEDpin < 14; LEDpin++){
+digitalWrite (LEDpin,HIGH);
+delay (map(analogRead(potPin),0,1023,1000,10));
+digitalWrite (LEDpin,LOW);
+}
+}
